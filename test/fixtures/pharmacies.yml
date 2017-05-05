@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+majang:
+  name: MyString
+  phone: MyString
+  address: MyString
+  way: MyString
+  monday: 
+  tuesday: 
+  wednesday: 
+  thursday: 
+  friday: 
+  saturday: 
+  sunday: 
+  holiday: 
+  hpid: MyString
+  coordinates: 
+
+two:
+  name: MyString
+  phone: MyString
+  address: MyString
+  way: MyString
+  monday: 
+  tuesday: 
+  wednesday: 
+  thursday: 
+  friday: 
+  saturday: 
+  sunday: 
+  holiday: 
+  hpid: MyString
+  coordinates: 
