@@ -1,33 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 majang:
-  name: MyString
-  phone: MyString
-  address: MyString
-  way: MyString
-  monday: 
-  tuesday: 
-  wednesday: 
-  thursday: 
-  friday: 
-  saturday: 
-  sunday: 
-  holiday: 
-  hpid: MyString
-  coordinates: 
-
-two:
-  name: MyString
-  phone: MyString
-  address: MyString
-  way: MyString
-  monday: 
-  tuesday: 
-  wednesday: 
-  thursday: 
-  friday: 
-  saturday: 
-  sunday: 
-  holiday: 
-  hpid: MyString
-  coordinates: 
+  name: 마장백화점약국
+  phone: 02-962-1161
+  address: 서울특별시 동대문구 고산자로 410, 1층 (용두동)
+  way: 용두역 3번출구 200m
+  monday: [0640, 2330]
+  tuesday: [0640, 2330]
+  wednsday: [0640, 2330]
+  thursday: [0640, 2330]
+  friday: [0640, 2330]
+  saturday: [0640, 2330]
+  sunday: [0800, 2300]
+  holiday: [0800, 2300]
+  hpid: C1101582
+  coordinates: (37.576294444444443, 127.038525000000007)
