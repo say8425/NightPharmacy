@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 20170430120012) do
     t.string "address"
     t.string "way"
     t.string "monday", array: true
-    t.tstzrange "tuesday"
-    t.tstzrange "wednesday"
-    t.tstzrange "thursday"
-    t.tstzrange "friday"
-    t.tstzrange "saturday"
-    t.tstzrange "sunday"
-    t.tstzrange "holiday"
+    t.string "tuesday", array: true
+    t.string "wednesday", array: true
+    t.string "thursday", array: true
+    t.string "friday", array: true
+    t.string "saturday", array: true
+    t.string "sunday", array: true
+    t.string "holiday", array: true
     t.string "hpid"
     t.point "coordinates"
     t.datetime "created_at", null: false
