@@ -28,6 +28,10 @@ gem 'jbuilder', '~> 2.5'
 
 # HTTP & REST
 gem 'rest-client', '~> 2.0.2'
+gem 'httparty', '~> 0.15.5'
+
+# Environment Manage
+gem 'figaro', '~> 1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
