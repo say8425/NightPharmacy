@@ -1,22 +1,16 @@
 require 'json'
-require 'rest-client'
+require "#{Rails.root}/app/services/pharmacy_portal"
 
 namespace :portal do
   namespace :db do
     namespace :file do
       desc 'Write all pharmacy data on a file'
       task :write do
-        url = 'http://openapi2.e-gen.or.kr/openapi/service/rest/ErmctInsttInfoInqireService/getParmacyBassInfoInqire'.freeze
-        key = 'Your Secret key'
-
-        params = { numOfRows: 1 }
-
         puts 'Getting Data...'
-        data = RestClient.get(url, { accept: :json, params: params })
-        total_data = (JSON.parse(data.body)['response']['body']['items']['item'])
+        data = PharmacyPortal.all_infos
 
         puts 'Writing Files...'
-        File.write('night-pharmacy.json', total_data.to_json.gsub('\"', ''))
+        File.write('night-pharmacy.json', data.to_json.gsub('\"', ''))
 
         puts 'Complete!'
       end
