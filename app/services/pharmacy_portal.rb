@@ -33,4 +33,21 @@ class PharmacyPortal
     data = JSON.parse self.class.get('/getParmacyBassInfoInqire', options ).body, symbolize_names: true
     data[:response][:body][:totalCount]
   end
+  private
+
+  def rows
+    options[:query][:numOfRows]
+  end
+
+  def rows=(rows)
+    options[:query][:numOfRows] = rows
+  end
+
+  def page
+    options[:query][:pageNo]
+  end
+
+  def page=(page)
+    options[:query][:pageNo] = page
+  end
 end
