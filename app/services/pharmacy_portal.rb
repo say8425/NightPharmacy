@@ -15,6 +15,7 @@ class PharmacyPortal
   end
 
   def infos(rows=10)
+    init_page
     self.rows = rows
 
     data = JSON.parse self.class.get('/getParmacyBassInfoInqire', options ).body, symbolize_names: true
@@ -23,12 +24,14 @@ class PharmacyPortal
 
   def all_infos
     self.rows = 50000
+    init_page
 
     data = JSON.parse self.class.get('/getParmacyBassInfoInqire', options ).body, symbolize_names: true
     data[:response][:body][:items][:item]
   end
 
   def total_count
+    init_page
     self.rows = 1
 
     data = JSON.parse self.class.get('/getParmacyBassInfoInqire', options ).body, symbolize_names: true
@@ -42,6 +45,10 @@ class PharmacyPortal
 
   def rows=(rows)
     @options[:query][:numOfRows] = rows
+  end
+
+  def init_page
+    @options[:query][:pageNo] = 1
   end
 
   def page
