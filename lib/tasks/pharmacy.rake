@@ -17,7 +17,8 @@ namespace :pharmacy do
   namespace :db do
     desc 'Get all pharmacy data and CREATE on table, unless data is existed.'
     task :create => :environment do
-      PharmacyPortal.create
+      pharmacy_data = PharmacyPortal.new
+      pharmacy_data.create
     end
   end
 end

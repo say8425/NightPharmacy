@@ -23,11 +23,17 @@ class PharmacyPortal
   end
 
   def all_infos
-    self.rows = 50000
-    init_page
+    result = Array.new
 
-    data = request_data
-    data[:response][:body][:items][:item]
+    1.upto total_loop_count do |index|
+      self.page = index
+      self.rows = 5000
+
+      data = request_data
+      result.concat data[:response][:body][:items][:item]
+    end
+
+    result
   end
 
   def total_count
@@ -37,6 +43,16 @@ class PharmacyPortal
     data = request_data
     data[:response][:body][:totalCount]
   end
+
+  def create
+    if Pharmacy.any?
+      abort 'Sorry. Data is already existed.'
+    else
+      all_infos.each do |info|
+      end
+    end
+  end
+
   def connect_portal
     self.class.get('/getParmacyBassInfoInqire', @options )
   end
@@ -65,5 +81,9 @@ class PharmacyPortal
 
   def request_data
     JSON.parse connect_portal.body, symbolize_names: true
+  end
+
+  def total_loop_count
+    (total_count / 5000) + 1
   end
 end
