@@ -25,12 +25,20 @@ class PharmacyPortal
   def all_infos
     result = Array.new
 
+    getting_progressbar = ProgressBar.create(title: 'Getting the Pharmacy DB',
+                                             total: total_loop_count,
+                                             format: "%t %b\u{15E7}%i Processed: %p%%",
+                                             progress_mark: ' ',
+                                             remainder_mark: "\u{FF65}")
+
     1.upto total_loop_count do |index|
       self.page = index
       self.rows = 5000
 
       data = request_data
       result.concat data[:response][:body][:items][:item]
+
+      getting_progressbar.increment
     end
 
     result
@@ -48,7 +56,16 @@ class PharmacyPortal
     if Pharmacy.any?
       abort 'Sorry. Data is already existed.'
     else
+      creating_progressbar = ProgressBar.create(title: 'Creating the Pharmacy DB',
+                                                total: total_count,
+                                                format: "%t %b\u{15E7}%i Processed: %c/%C",
+                                                progress_mark: ' ',
+                                                remainder_mark: "\u{FF65}",
+                                                sleep: 0.05,
+                                                throttle_rate: 0.00000001)
+
       all_infos.each do |info|
+        creating_progressbar.increment
       end
     end
   end
