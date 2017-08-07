@@ -67,6 +67,24 @@ class PharmacyPortal
       )
 
       all_infos.each do |info|
+        Pharmacy.create(
+            name:        info[:dutyName],
+            info:        info[:dutyInf],
+            phone:       info[:dutyTel1],
+            address:     info[:dutyAddr],
+            way:         info[:dutyMapimg],
+            monday:      [info[:dutyTime1s], info[:dutyTime1c]],
+            tuesday:     [info[:dutyTime2s], info[:dutyTime2c]],
+            wednesday:   [info[:dutyTime3s], info[:dutyTime3c]],
+            thursday:    [info[:dutyTime4s], info[:dutyTime4c]],
+            friday:      [info[:dutyTime5s], info[:dutyTime5c]],
+            saturday:    [info[:dutyTime6s], info[:dutyTime6c]],
+            sunday:      [info[:dutyTime7s], info[:dutyTime7c]],
+            holiday:     [info[:dutyTime8s], info[:dutyTime8c]],
+            hpid:        info[:hpid],
+            coordinates: coordinates_for(info)
+        )
+
         creating_progressbar.increment
       end
     end
@@ -104,5 +122,13 @@ class PharmacyPortal
 
   def total_loop_count
     (total_count / 5000) + 1
+  end
+
+  def coordinates_for(info)
+    if info[:wgs84Lat].nil? && info[:wgs84Lon].nil?
+      nil
+    else
+      "(#{info[:wgs84Lat]}, #{info[:wgs84Lon]})"
+    end
   end
 end
