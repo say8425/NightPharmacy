@@ -6,8 +6,8 @@ class PharmacyTest < ActiveSupport::TestCase
   end
 
   test 'Connect Data go portal' do
-    info = @info.connect_gov
     assert info.success?, 'Accessing Data portal is FAIL!'
+    info = @portal.connect_portal
   end
 
   test 'Controlling Data length' do

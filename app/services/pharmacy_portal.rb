@@ -37,7 +37,7 @@ class PharmacyPortal
     data = request_data
     data[:response][:body][:totalCount]
   end
-  def connect_gov
+  def connect_portal
     self.class.get('/getParmacyBassInfoInqire', @options )
   end
 
@@ -64,6 +64,6 @@ class PharmacyPortal
   end
 
   def request_data
-    JSON.parse connect_gov.body, symbolize_names: true
+    JSON.parse connect_portal.body, symbolize_names: true
   end
 end
