@@ -29,7 +29,8 @@ class PharmacyPortal
                                              total: total_loop_count,
                                              format: "%t %b\u{15E7}%i Processed: %p%%",
                                              progress_mark: ' ',
-                                             remainder_mark: "\u{FF65}")
+                                             remainder_mark: "\u{FF65}"
+    )
 
     1.upto total_loop_count do |index|
       self.page = index
@@ -62,7 +63,8 @@ class PharmacyPortal
                                                 progress_mark: ' ',
                                                 remainder_mark: "\u{FF65}",
                                                 sleep: 0.05,
-                                                throttle_rate: 0.00000001)
+                                                throttle_rate: 0.00000001
+      )
 
       all_infos.each do |info|
         creating_progressbar.increment
