@@ -55,7 +55,7 @@ class PharmacyPortal
 
   def create
     if Pharmacy.any?
-      abort 'Sorry. Data is already existed.'
+      abort '⛔️  Sorry. Data is already existed'
     else
       creating_progressbar = ProgressBar.create(title: 'Creating the Pharmacy DB',
                                                 total: total_count,
@@ -67,6 +67,7 @@ class PharmacyPortal
       )
 
       all_infos.each do |info|
+        begin
         Pharmacy.create(
             name:        info[:dutyName],
             info:        info[:dutyInf],
@@ -85,8 +86,18 @@ class PharmacyPortal
             coordinates: coordinates_for(info)
         )
 
-        creating_progressbar.increment
+        rescue ArgumentError
+          creating_progressbar.stop
+          puts "❌  #{info[:dutyName]}(#{info[:hpid]}) raise a error "
+          p info
+          Pharmacy.delete_all
+          raise
+        else
+          creating_progressbar.increment
+        end
       end
+
+      puts '✨  Complete'
     end
   end
 
