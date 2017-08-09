@@ -25,9 +25,9 @@ class PharmacyPortal
   def all_infos
     result = Array.new
 
-    getting_progressbar = ProgressBar.create(title: 'Getting the Pharmacy DB',
+    getting_progressbar = ProgressBar.create(title: 'Preparing',
                                              total: total_loop_count,
-                                             format: "%t %b\u{15E7}%i Processed: %p%%",
+                                             format: "%t %b\u{15E7}%i %p%%",
                                              progress_mark: ' ',
                                              remainder_mark: "\u{FF65}"
     )
@@ -57,13 +57,11 @@ class PharmacyPortal
     if Pharmacy.any?
       abort '⛔️  Sorry. Data is already existed'
     else
-      creating_progressbar = ProgressBar.create(title: 'Creating the Pharmacy DB',
+      creating_progressbar = ProgressBar.create(title: 'Creating',
                                                 total: total_count,
-                                                format: "%t %b\u{15E7}%i Processed: %c/%C",
+                                                format: "%t %b\u{15E7}%i %c/%C",
                                                 progress_mark: ' ',
-                                                remainder_mark: "\u{FF65}",
-                                                sleep: 0.05,
-                                                throttle_rate: 0.00000001
+                                                remainder_mark: "\u{FF65}"
       )
 
       all_infos.each do |info|
@@ -97,7 +95,7 @@ class PharmacyPortal
         end
       end
 
-      puts '✨  Complete'
+      puts '✨  Done'
     end
   end
 
