@@ -1,0 +1,61 @@
+AllCops:
+  Rails: true
+  Include:
+    - lib/**/*.rake
+  Exclude:
+    - Gemfile
+    - Rakefile
+    - config.ru
+    - db/schema.rb
+    - test/test_helper.rb
+    - node_modules/**/*
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - config/initializers/devise.rb
+
+# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Metrics/ClassLength:
+  Max: 1500
+  Exclude:
+    - db/migrate/*.rb
+
+# Too short methods lead to extraction of single-use methods, which can make
+# the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength:
+  Max: 30
+  Exclude:
+    - db/migrate/*.rb
+
+# Bootstrap config block is too loooooong.
+Metrics/BlockLength:
+  Exclude:
+    - config/initializers/simple_form_bootstrap.rb
+
+Metrics/AbcSize:
+  Enabled: false
+
+# Devise layout config has proc variable not lintable.
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+   - config/initializers/devise.rb
+
+Style/CommentAnnotation:
+  Enabled: false
+
+# We do not need to support Ruby 1.9, so this is good to use.
+Style/SymbolArray:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
