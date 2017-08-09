@@ -135,3 +135,9 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore night pharmacy json that built by rake.
+night-pharmacy.json
+
+# Ignore application configuration
+config/application.yml
