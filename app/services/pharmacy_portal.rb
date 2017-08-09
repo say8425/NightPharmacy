@@ -5,16 +5,16 @@ class PharmacyPortal
 
   def initialize
     @options = {
-        headers: { Accept: 'application/json' },
-        query: {
-            pageNo: 1,
-            numOfRows: 1,
-            ServiceKey: ENV['portal_secret_key']
-        }
+      headers: { Accept: 'application/json' },
+      query: {
+        pageNo: 1,
+        numOfRows: 1,
+        ServiceKey: ENV['portal_secret_key']
+      }
     }
   end
 
-  def infos(rows=10)
+  def infos(rows = 10)
     init_page
     self.rows = rows
 
@@ -23,14 +23,12 @@ class PharmacyPortal
   end
 
   def all_infos
-    result = Array.new
-
+    result = []
     getting_progressbar = ProgressBar.create(title: 'Preparing',
                                              total: total_loop_count,
                                              format: "%t %b\u{15E7}%i %p%%",
                                              progress_mark: ' ',
-                                             remainder_mark: "\u{FF65}"
-    )
+                                             remainder_mark: "\u{FF65}")
 
     1.upto total_loop_count do |index|
       self.page = index
@@ -61,29 +59,11 @@ class PharmacyPortal
                                                 total: total_count,
                                                 format: "%t %b\u{15E7}%i %c/%C",
                                                 progress_mark: ' ',
-                                                remainder_mark: "\u{FF65}"
-      )
+                                                remainder_mark: "\u{FF65}")
 
       all_infos.each do |info|
         begin
-        Pharmacy.create(
-            name:        info[:dutyName],
-            info:        info[:dutyInf],
-            phone:       info[:dutyTel1],
-            address:     info[:dutyAddr],
-            way:         info[:dutyMapimg],
-            monday:      [info[:dutyTime1s], info[:dutyTime1c]],
-            tuesday:     [info[:dutyTime2s], info[:dutyTime2c]],
-            wednesday:   [info[:dutyTime3s], info[:dutyTime3c]],
-            thursday:    [info[:dutyTime4s], info[:dutyTime4c]],
-            friday:      [info[:dutyTime5s], info[:dutyTime5c]],
-            saturday:    [info[:dutyTime6s], info[:dutyTime6c]],
-            sunday:      [info[:dutyTime7s], info[:dutyTime7c]],
-            holiday:     [info[:dutyTime8s], info[:dutyTime8c]],
-            hpid:        info[:hpid],
-            coordinates: coordinates_for(info)
-        )
-
+          ar_create(info)
         rescue ArgumentError
           creating_progressbar.stop
           puts "❌  #{info[:dutyName]}(#{info[:hpid]}) raise a error "
@@ -100,7 +80,7 @@ class PharmacyPortal
   end
 
   def connect_portal
-    self.class.get('/getParmacyBassInfoInqire', @options )
+    self.class.get('/getParmacyBassInfoInqire', @options)
   end
 
   private
@@ -131,6 +111,26 @@ class PharmacyPortal
 
   def total_loop_count
     (total_count / 5000) + 1
+  end
+
+  def ar_create(info)
+    Pharmacy.create(
+      name:        info[:dutyName],
+      info:        info[:dutyInf],
+      phone:       info[:dutyTel1],
+      address:     info[:dutyAddr],
+      way:         info[:dutyMapimg],
+      monday:      [info[:dutyTime1s], info[:dutyTime1c]],
+      tuesday:     [info[:dutyTime2s], info[:dutyTime2c]],
+      wednesday:   [info[:dutyTime3s], info[:dutyTime3c]],
+      thursday:    [info[:dutyTime4s], info[:dutyTime4c]],
+      friday:      [info[:dutyTime5s], info[:dutyTime5c]],
+      saturday:    [info[:dutyTime6s], info[:dutyTime6c]],
+      sunday:      [info[:dutyTime7s], info[:dutyTime7c]],
+      holiday:     [info[:dutyTime8s], info[:dutyTime8c]],
+      hpid:        info[:hpid],
+      coordinates: coordinates_for(info)
+    )
   end
 
   def coordinates_for(info)
