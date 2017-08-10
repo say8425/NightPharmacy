@@ -3,7 +3,7 @@ require 'json'
 namespace :pharmacy do
   namespace :file do
     desc 'Write all pharmacy data on a file'
-    task :write  => :environment do
+    task write: :environment do
       puts 'Getting Data...'
       pharmacy_data = PharmacyPortal.new
 
@@ -16,7 +16,7 @@ namespace :pharmacy do
 
   namespace :db do
     desc 'Get all pharmacy data and CREATE on table, unless data is existed.'
-    task :create => :environment do
+    task create: :environment do
       pharmacy_data = PharmacyPortal.new
       pharmacy_data.create
     end
