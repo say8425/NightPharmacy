@@ -1,8 +1,56 @@
 version: 2
 jobs:
-   build:
-     docker:
-       - image: circleci/ruby:2.4.1
-     steps:
-       - checkout
-       - run: echo "hello world"
+  checkout_code:
+    docker:
+      - image: circleci/ruby:2.4.1
+      - image: circleci/postgres:9.6.3
+    working_directory: ~/NightPharmacy
+    steps:
+      - checkout
+      - run:
+          name: save SHA to a file
+          command: echo $CIRCLE_SHA1 > .circle-sha
+      - save_cache:
+          key: v1-repo-{{ checksum ".circle-sha" }}
+          paths:
+            - ~/NightPharmacy
+  bundle_dependencies:
+    docker:
+      - image: circleci/ruby:2.4.1
+      - image: circleci/postgres:9.6.3
+    working_directory: ~/NightPharmacy
+    steps:
+      - run:
+          name: save SHA to a file
+          command: echo $CIRCLE_SHA1 > .circle-sha
+      - restore_cache:
+          keys:
+            - v1-repo-{{ checksum ".circle-sha" }}
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/NightPharmacy/vendor/bundle
+  rake_test:
+    docker:
+      - image: circleci/ruby:2.4.1
+      - image: circleci/postgres:9.6.3
+    working_directory: ~/NightPharmacy
+    steps:
+      - run:
+          name: save SHA to a file
+          command: echo $CIRCLE_SHA1 > .circle-sha
+      - restore_cache:
+          keys:
+            - v1-repo-{{ checksum ".circle-sha" }}
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: bundle --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: Run tests
+          command: bundle exec rake test
