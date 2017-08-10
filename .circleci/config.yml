@@ -16,13 +16,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name: save SHA to a file
+          name: Save SHA to a file
           command: echo $CIRCLE_SHA1 > .circle-sha
       - save_cache:
           key: v1-repo-{{ checksum ".circle-sha" }}
           paths:
             - ~/NightPharmacy
-      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: Install Ruby Dependencies
+          command: bundle install
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+            bundle exec rake db:migrate
       - run:
           name: Run tests
           command: bundle exec rake test
