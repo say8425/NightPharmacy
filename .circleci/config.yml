@@ -20,6 +20,8 @@ jobs:
           command: bundle install
       - run:
           name: Set up DB
+          environment:
+            DATABASE_URL: "postgres://ubuntu@localhost:5432/night-pharmacy_test"
           command: |
             bundle exec rake db:create db:schema:load --trace
             bundle exec rake db:migrate
