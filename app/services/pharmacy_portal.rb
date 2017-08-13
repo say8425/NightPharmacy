@@ -22,13 +22,16 @@ class PharmacyPortal
     data[:response][:body][:items][:item]
   end
 
+  def total_count
+    init_page
+    self.rows = 1
+
+    data = request_data
+    data[:response][:body][:totalCount]
+  end
+
   def total_item
     result = []
-    preparing_progressbar = ProgressBar.create(title: 'Preparing',
-                                               total: total_loop_count,
-                                               format: "%t %b\u{15E7}%i %p%%",
-                                               progress_mark: ' ',
-                                               remainder_mark: "\u{FF65}")
 
     1.upto total_loop_count do |index|
       self.page = index
@@ -36,19 +39,9 @@ class PharmacyPortal
 
       data = request_data
       result.concat data[:response][:body][:items][:item]
-
-      preparing_progressbar.increment
     end
 
     result
-  end
-
-  def total_count
-    init_page
-    self.rows = 1
-
-    data = request_data
-    data[:response][:body][:totalCount]
   end
 
   def create
@@ -61,7 +54,7 @@ class PharmacyPortal
                                                 progress_mark: ' ',
                                                 remainder_mark: "\u{FF65}")
 
-      total_item.each do |info|
+      total_item_with_progress.each do |info|
         begin
           ar_create(info)
         rescue ArgumentError
@@ -139,5 +132,26 @@ class PharmacyPortal
     else
       "(#{info[:wgs84Lat]}, #{info[:wgs84Lon]})"
     end
+  end
+
+  def total_item_with_progress
+    result = []
+    preparing_progressbar = ProgressBar.create(title: 'Preparing',
+                                               total: total_loop_count,
+                                               format: "%t %b\u{15E7}%i %p%%",
+                                               progress_mark: ' ',
+                                               remainder_mark: "\u{FF65}")
+
+    1.upto total_loop_count do |index|
+      self.page = index
+      self.rows = 5000
+
+      data = request_data
+      result.concat data[:response][:body][:items][:item]
+
+      preparing_progressbar.increment
+    end
+
+    result
   end
 end
