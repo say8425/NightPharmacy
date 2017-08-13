@@ -8,7 +8,7 @@ namespace :pharmacy do
       pharmacy_data = PharmacyPortal.new
 
       puts 'Writing Files...'
-      File.write('night-pharmacy.json', pharmacy_data.all_infos.to_json.gsub('\"', ''))
+      File.write('night-pharmacy.json', pharmacy_data.total_item.to_json.gsub('\"', ''))
 
       puts 'Complete!'
     end

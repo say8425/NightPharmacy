@@ -22,7 +22,7 @@ class PharmacyPortal
     data[:response][:body][:items][:item]
   end
 
-  def all_infos
+  def total_item
     result = []
     getting_progressbar = ProgressBar.create(title: 'Preparing',
                                              total: total_loop_count,
@@ -61,7 +61,7 @@ class PharmacyPortal
                                                 progress_mark: ' ',
                                                 remainder_mark: "\u{FF65}")
 
-      all_infos.each do |info|
+      total_item.each do |info|
         begin
           ar_create(info)
         rescue ArgumentError

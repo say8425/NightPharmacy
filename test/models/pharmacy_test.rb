@@ -22,7 +22,7 @@ class PharmacyTest < ActiveSupport::TestCase
   end
 
   test 'Getting All of Data from the Portal' do
-    all_info = @portal.all_infos
+    all_info = @portal.total_item
     assert all_info.count.equal?(@portal.total_count), 'Getting all of data is FAIL'
   end
 end
