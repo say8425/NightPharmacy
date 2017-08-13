@@ -24,11 +24,11 @@ class PharmacyPortal
 
   def total_item
     result = []
-    getting_progressbar = ProgressBar.create(title: 'Preparing',
-                                             total: total_loop_count,
-                                             format: "%t %b\u{15E7}%i %p%%",
-                                             progress_mark: ' ',
-                                             remainder_mark: "\u{FF65}")
+    preparing_progressbar = ProgressBar.create(title: 'Preparing',
+                                               total: total_loop_count,
+                                               format: "%t %b\u{15E7}%i %p%%",
+                                               progress_mark: ' ',
+                                               remainder_mark: "\u{FF65}")
 
     1.upto total_loop_count do |index|
       self.page = index
@@ -37,7 +37,7 @@ class PharmacyPortal
       data = request_data
       result.concat data[:response][:body][:items][:item]
 
-      getting_progressbar.increment
+      preparing_progressbar.increment
     end
 
     result
