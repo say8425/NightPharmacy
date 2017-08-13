@@ -14,7 +14,7 @@ class PharmacyPortal
     }
   end
 
-  def infos(rows = 10)
+  def items(rows = 10)
     init_page
     self.rows = rows
 
