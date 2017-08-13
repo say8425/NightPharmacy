@@ -1,5 +1,8 @@
 # README
 
+[![CircleCI](https://circleci.com/gh/say8425/NightPharmacy.svg?style=svg)](https://circleci.com/gh/say8425/NightPharmacy)
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
