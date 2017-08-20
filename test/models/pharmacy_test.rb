@@ -11,18 +11,18 @@ class PharmacyTest < ActiveSupport::TestCase
   end
 
   test 'Controlling a Data length' do
-    infos = @portal.infos(2)
-    assert infos.count.equal?(2), 'Controlling length of data is FAIL'
+    items = @portal.items(2)
+    assert items.count.equal?(2), 'Controlling length of data is FAIL'
 
-    infos = @portal.infos(42)
-    assert infos.count.equal?(42), 'Controlling length of data is FAIL'
+    items = @portal.items(42)
+    assert items.count.equal?(42), 'Controlling length of data is FAIL'
 
-    infos = @portal.infos(15)
-    assert infos.count.equal?(15), 'Controlling length of data is FAIL'
+    items = @portal.items(15)
+    assert items.count.equal?(15), 'Controlling length of data is FAIL'
   end
 
   test 'Getting All of Data from the Portal' do
-    all_info = @portal.all_infos
+    all_info = @portal.total_item
     assert all_info.count.equal?(@portal.total_count), 'Getting all of data is FAIL'
   end
 end
