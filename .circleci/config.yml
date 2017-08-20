@@ -9,7 +9,6 @@ jobs:
           - PG_HOST=localhost
           - PG_USER=ubuntu
           - DATABASE_URL=postgres://ubuntu@localhost:5432/night-pharmacy_test
-          - TESTOPTS=--ci-dir=$CIRCLE_TEST_REPORTS/reports
       - image: circleci/postgres:9.6.3
         env:
           - POSTGRES_USER=ubuntu
@@ -27,5 +26,3 @@ jobs:
       - run:
           name: Run tests
           command: bundle exec rake test
-      - store_test_results:
-          path: /tmp/test-results
