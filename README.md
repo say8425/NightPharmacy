@@ -1,4 +1,6 @@
-# 야간약국 [![CircleCI](https://circleci.com/gh/say8425/NightPharmacy.svg?style=svg)](https://circleci.com/gh/say8425/NightPharmacy)
+# 야간약국 
+[![CircleCI](https://img.shields.io/circleci/project/github/say8425/NightPharmacy.svg)](https://circleci.com/gh/say8425/NightPharmacy)
+[![Dependency Status](https://gemnasium.com/badges/github.com/say8425/NightPharmacy.svg)](https://gemnasium.com/github.com/say8425/NightPharmacy)
 
 
 [공공데이터 포탈](https://www.data.go.kr)의 [전국 약국 정보 조회 서비스 API](https://www.data.go.kr/subMain.jsp#/L3B1YnIvcG90L215cC9Jcm9zTXlQYWdlL29wZW5EZXZEZXRhaWxQYWdlJEBeMDgyTTAwMDAxMzBeTTAwMDAxMzUkQF5wdWJsaWNEYXRhRGV0YWlsUGs9dWRkaTozMDc4NDU2OC00ODUxLTQxZDItYjc3MC1hMzg0NGMxYzNjZDRfMjAxNzAyMjcxMzMyJEBecHJjdXNlUmVxc3RTZXFObz0xODQ1NjMwJEBecmVxc3RTdGVwQ29kZT1TVENEMDE=)
