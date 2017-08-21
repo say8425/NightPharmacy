@@ -97,7 +97,6 @@ GEM
       sexp_processor (~> 4.8)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    gmaps4rails (2.1.2)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httparty (0.15.6)
@@ -277,7 +276,6 @@ DEPENDENCIES
   capybara (~> 2.13.0)
   factory_girl_rails (~> 4.8.0)
   figaro (~> 1.1.1)
-  gmaps4rails
   httparty (~> 0.15.5)
   jbuilder (~> 2.5)
   jquery-rails
