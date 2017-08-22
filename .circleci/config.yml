@@ -25,7 +25,7 @@ jobs:
             bundle exec rake db:migrate
       - run:
           name: Run the Rubocop
-          command: bundle exec rake rubocop
+          command: bundle exec rubocop
       - run:
           name: Run tests
           command: bundle exec rake test
