@@ -47,6 +47,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13.0'
   gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'rubocop', '~> 0.49.1', require: false
   gem 'selenium-webdriver'
 end
 
@@ -56,7 +57,6 @@ group :development do
   gem 'pry-rails', '~> 0.3.6'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'rubocop', '~> 0.49.1', require: false
   gem 'rubycritic', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

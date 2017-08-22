@@ -1,5 +1,6 @@
 # 야간약국 
 [![CircleCI](https://img.shields.io/circleci/project/github/say8425/NightPharmacy.svg)](https://circleci.com/gh/say8425/NightPharmacy)
+[![Code Climate](https://img.shields.io/codeclimate/github/say8425/NightPharmacy.svg)](https://codeclimate.com/github/say8425/NightPharmacy)
 [![Dependency Status](https://gemnasium.com/badges/github.com/say8425/NightPharmacy.svg)](https://gemnasium.com/github.com/say8425/NightPharmacy)
 
 
