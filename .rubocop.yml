@@ -6,9 +6,13 @@ AllCops:
     - Gemfile
     - Rakefile
     - config.ru
-    - db/schema.rb
     - test/test_helper.rb
     - node_modules/**/*
+    - db/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - bin/**/*
+    - log/**/*
 
 Documentation:
   Enabled: false
